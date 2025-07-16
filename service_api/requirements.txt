@@ -1,0 +1,11 @@
+numpy==1.26.4
+pandas==2.2.2
+pyarrow
+urllib3==1.26.16
+requests
+fastapi
+pydantic
+uvicorn
+cybersource-rest-client-python
+google-cloud-storage
+gunicorn==20.1.0
