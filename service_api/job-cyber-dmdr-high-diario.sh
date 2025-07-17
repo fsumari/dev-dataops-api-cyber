@@ -1,10 +1,10 @@
 
-PROJECT_ID="dev-izipay-advanced-analytics"
+PROJECT_ID="prd-izipay-advanced-analytics"
 JOB_NAME="job_api_cyber_dmdr_high_diario_3am"
 REGION="us-central1"
 CRON_SCHEDULE="30 3 * * *"
 TIME_ZONE="America/Lima"
-RUN_URL="https://dev-izi-cyber-api-v1-dl7olq7kiq-uc.a.run.app/cyber"
+RUN_URL="https://prd-izi-cyber-api-v1-a3dhp75ena-uc.a.run.app/cyber"
 FECHA=$(date +%F)
 
 BODY="{
