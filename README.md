@@ -1,4 +1,4 @@
-# Izipay - API CyberSiyrce
+# Izipay - API CyberSource
 
 ## 1. Clone repository
 
@@ -22,38 +22,56 @@
 Crear SA con el siguiente comando:
 
 ```
-gcloud iam service-accounts create prd-dataops-apis-onemarketer \
-  --display-name "Service account para dataops apis"
+gcloud iam service-accounts create prd-dataops-apis-izipay-int \
+  --display-name "Service account para DataOps APIs para ser usando internamente en Izipay"
 ```
+## 3. Crear el bucket de forma manual
 
-## 3. Dar permisos a la Service Account
+nombre del bucket: prd-ingesta-izipay-fx32
+
+## 4. Dar permisos a la Service Account
 
 Obtener el ID del projecto.
 
 ```
 export GOOGLE_CLOUD_PROJECT=$(gcloud config get-value core/project)
 ```
-Permisos de User para las APIS , DocAI y Firestore:
+Permisos sencillos en el projecto por defecto:
 
 ```
+gcloud projects add-iam-policy-binding ${GOOGLE_CLOUD_PROJECT} \
+    --member="serviceAccount:prd-dataops-apis-izipay-int@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
+    --role="roles/storage.objectCreator"
 
 gcloud projects add-iam-policy-binding ${GOOGLE_CLOUD_PROJECT} \
-    --member="serviceAccount:prd-dataops-apis-onemarketer@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
+    --member="serviceAccount:prd-dataops-apis-izipay-int@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
     --role="roles/datastore.user"
 
 gcloud projects add-iam-policy-binding ${GOOGLE_CLOUD_PROJECT} \
-    --member="serviceAccount:prd-dataops-apis-onemarketer@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
+    --member="serviceAccount:prd-dataops-apis-izipay-int@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
     --role="roles/serviceusage.serviceUsageConsumer"
 
 gcloud projects add-iam-policy-binding ${GOOGLE_CLOUD_PROJECT} \
-    --member="serviceAccount:prd-dataops-apis-onemarketer@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
+    --member="serviceAccount:prd-dataops-apis-izipay-int@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
     --role="roles/viewer"
 ```
 
+```
+Permisos de User para las Cloud Storage en el Projeto prd-izipay-data-storage:
+
+```
+gcloud storage buckets add-iam-policy-binding prd-ingesta-izipay-fx32 \
+  --member="serviceAccount:prd-dataops-apis-izipay-int@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
+  --role="roles/storage.objectCreator" \
+  --project=prd-izipay-data-storage
+```
 
 ## 4. Deploy
 
     ```sh
      cd service_api
      bash deploy.sh
+     bash job-cyber-trr-dayli.sh
+     bash job-cyber-dmdr-low-diario.sh
+     bash job-cyber-dmdr-high-diario.sh
     ```
