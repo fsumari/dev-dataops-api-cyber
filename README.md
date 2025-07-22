@@ -66,6 +66,13 @@ gcloud storage buckets add-iam-policy-binding prd-ingesta-izipay-fx32 \
   --project=prd-izipay-data-storage
 ```
 
+```
+gcloud storage buckets add-iam-policy-binding prd-ingesta-izipay-fx32 \
+  --member="serviceAccount:prd-dataops-apis-izipay-int@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com" \
+  --role="roles/storage.objectUser" \
+  --project=prd-izipay-data-storage
+```
+
 ## 4. Deploy
 
     ```sh
