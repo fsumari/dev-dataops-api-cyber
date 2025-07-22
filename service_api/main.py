@@ -58,7 +58,10 @@ class RequestCyberModel(BaseModel):
     merchant_key_id: str
     merchant_secret_key_id: str
     report_name: str
-    fecha: str
+    fecha: str = datetime.now().strftime("%Y-%m-%d")
+
+#current_date = datetime.now()
+#formatted_date = current_date.strftime("%Y-%m-%d")
 
 # @app.before_request
 # def restrict_ip():
