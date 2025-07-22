@@ -2,5 +2,7 @@ GCP_PROJECT_ID=prd-izipay-advanced-analytics
 BUCKET_NAME=prd-ingesta-izipay-fx32
 SECRET_TOKEN=prd-izipay-token-7rMVpUvdo8T3BlbkFJvlPEtwcw
 
-DEPLOY_SERVICE_ACCOUNT=prd-izipay-gcai-api-intgr@prd-izipay-advanced-analytics.iam.gserviceaccount.com
+DEPLOY_SERVICE_ACCOUNT=prd-dataops-apis-izipay-int@prd-izipay-advanced-analytics.iam.gserviceaccount.com
 DEPLOY_SERVICE_NAME=prd-izi-cyber-api-v1
+
+ENDPOINT=https://prd-izi-cyber-api-v1-a3dhp75ena-uc.a.run.app
